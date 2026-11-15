@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SakuTrack — Pencatat Pengeluaran Pribadi</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo">SakuTrack</h1>
+      <p class="tagline">Kelola pengeluaran harian Anda dengan mudah dan cerdas</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Summary Cards -->
+    <section class="summary-grid" aria-label="Ringkasan pengeluaran">
+      <div class="card summary-card">
+        <span class="summary-label">Total Pengeluaran</span>
+        <span class="summary-value" id="totalAmount">Rp 0</span>
+      </div>
+      <div class="card summary-card">
+        <span class="summary-label">Jumlah Transaksi</span>
+        <span class="summary-value" id="totalCount">0</span>
+      </div>
+      <div class="card summary-card">
+        <span class="summary-label">Kategori Terbesar</span>
+        <span class="summary-value" id="topCategory">—</span>
+      </div>
+    </section>
+
+    <!-- Form Transaksi -->
+    <section class="card form-section" aria-label="Form transaksi">
+      <h2 class="section-title" id="formTitle">Tambah Transaksi</h2>
+      <form id="transactionForm" novalidate>
+        <input type="hidden" id="editId" />
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name">Nama Pengeluaran</label>
+            <input type="text" id="name" placeholder="cth. Makan siang" maxlength="80" required />
+            <span class="error-msg" id="nameError"></span>
+          </div>
+          <div class="form-group">
+            <label for="amount">Nominal (Rp)</label>
+            <input type="number" id="amount" placeholder="cth. 25000" min="1" required />
+            <span class="error-msg" id="amountError"></span>
+          </div>
+          <div class="form-group">
+            <label for="category">Kategori</label>
+            <select id="category" required>
+              <option value="">— Pilih Kategori —</option>
+              <option value="Makanan">Makanan</option>
+              <option value="Transportasi">Transportasi</option>
+              <option value="Belanja">Belanja</option>
+              <option value="Tagihan">Tagihan</option>
+              <option value="Lainnya">Lainnya</option>
+            </select>
+            <span class="error-msg" id="categoryError"></span>
+          </div>
+          <div class="form-group">
+            <label for="date">Tanggal</label>
+            <input type="date" id="date" required />
+            <span class="error-msg" id="dateError"></span>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="submitBtn">Simpan</button>
+          <button type="button" class="btn btn-secondary" id="cancelBtn" hidden>Batal</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Filter -->
+    <section class="card filter-section" aria-label="Filter transaksi">
+      <h2 class="section-title">Filter</h2>
+      <div class="filter-row">
+        <div class="form-group">
+          <label for="filterCategory">Kategori</label>
+          <select id="filterCategory">
+            <option value="">Semua Kategori</option>
+            <option value="Makanan">Makanan</option>
+            <option value="Transportasi">Transportasi</option>
+            <option value="Belanja">Belanja</option>
+            <option value="Tagihan">Tagihan</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="filterMonth">Bulan</label>
+          <input type="month" id="filterMonth" />
+        </div>
+        <div class="form-group filter-reset">
+          <button type="button" class="btn btn-secondary" id="resetFilter">Reset Filter</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bar Chart Kategori -->
+    <section class="card chart-section" aria-label="Grafik pengeluaran per kategori">
+      <h2 class="section-title">Pengeluaran per Kategori</h2>
+      <div id="categoryChart"></div>
+    </section>
+
+    <!-- Daftar Transaksi -->
+    <section class="card list-section" aria-label="Daftar transaksi">
+      <h2 class="section-title">Riwayat Transaksi</h2>
+      <div id="transactionList"></div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
